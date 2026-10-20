@@ -1,0 +1,21 @@
+window.TEXTS={
+en:[
+"The sun rose slowly over the quiet town and the streets began to fill with people. Shopkeepers lifted their shutters, children walked to school with heavy bags, and the smell of fresh tea drifted through the air. It was an ordinary morning, yet everyone seemed to carry a small hope for the day ahead.",
+"Learning to type fast is a skill that pays off for a lifetime. Sit straight, keep your wrists relaxed and place your fingers on the home row. Look at the screen and not at the keys. Speed will come with practice, but accuracy always comes first, so slow down whenever you make mistakes.",
+"A good habit is built one small step at a time. If you practise for just fifteen minutes every day, you will see clear progress within a month. Keep a record of your scores, celebrate small wins and never compare your first week with someone else's tenth year.",
+"Technology has changed the way we work and learn. Today a student can attend a class from a village, a shopkeeper can accept payments with a phone, and a small team can build a useful product without a big office. The only thing that matters is the willingness to keep learning every day.",
+"The train left the station exactly on time. Passengers settled into their seats, some opened books and some watched the fields move past the window. A vendor walked through the coach selling hot snacks, and the rhythm of the wheels slowly put a few tired travellers to sleep.",
+"Good communication begins with listening. Before you reply to an email or a message, read it twice and make sure you understand what is being asked. Keep your sentences short, check your spelling and always end with a clear next step so that the other person knows what to do.",
+"Mountains teach patience. A climber does not reach the top by running; he walks steadily, rests when needed and keeps his eyes on the next step. Typing is similar. Small, steady and careful effort every day will take you much further than a single day of rushing.",
+"In a busy office, accurate data entry is worth more than speed alone. A single wrong digit in an invoice can cause hours of extra work. Check each line before you move on, use both hands and keep a steady rhythm. Over time, your speed and your accuracy will grow together."
+],
+hi:[
+"सुबह की ठंडी हवा में पूरा शहर धीरे धीरे जाग रहा था। दुकानदार अपनी दुकानें खोल रहे थे, बच्चे बस्ता लेकर स्कूल जा रहे थे और चाय की खुशबू गलियों में फैल रही थी। यह एक साधारण सुबह थी, फिर भी हर किसी के मन में नए दिन की एक छोटी सी उम्मीद थी।",
+"तेज टाइपिंग सीखना ऐसा हुनर है जो जीवन भर काम आता है। सीधे बैठिए, हाथों को ढीला रखिए और उंगलियों को सही जगह पर रखिए। चाबियों को नहीं, स्क्रीन को देखिए। अभ्यास से गति अपने आप बढ़ेगी, लेकिन सही टाइपिंग सबसे पहले आती है, इसलिए गलती होने पर धीमे हो जाइए।",
+"कोई भी अच्छी आदत एक एक कदम से बनती है। यदि आप रोज केवल पंद्रह मिनट अभ्यास करेंगे तो एक महीने में आपको साफ अंतर दिखाई देगा। अपने अंक लिखकर रखिए, छोटी जीत की खुशी मनाइए और अपनी पहली कोशिश की तुलना किसी और के अनुभव से मत कीजिए।",
+"तकनीक ने हमारे काम करने और सीखने का तरीका बदल दिया है। आज एक विद्यार्थी गांव में बैठकर कक्षा में पढ़ सकता है, दुकानदार फोन से भुगतान ले सकता है और छोटी सी टीम बिना बड़े दफ्तर के उपयोगी चीजें बना सकती है। जरूरी बस इतना है कि हम रोज कुछ नया सीखते रहें।",
+"रेलगाड़ी ठीक समय पर स्टेशन से चल पड़ी। यात्री अपनी सीटों पर बैठ गए, कुछ ने किताबें खोल लीं और कुछ खिड़की से खेतों को पीछे जाते देखते रहे। एक विक्रेता गरम नाश्ता बेचता हुआ डिब्बे में घूम रहा था और पहियों की आवाज ने थके हुए कुछ यात्रियों को सुला दिया।",
+"अच्छी बातचीत की शुरुआत सुनने से होती है। किसी संदेश का उत्तर देने से पहले उसे दो बार पढ़िए और समझिए कि आपसे क्या पूछा गया है। वाक्य छोटे रखिए, वर्तनी जांचिए और अंत में साफ बताइए कि आगे क्या करना है, ताकि सामने वाले को पता रहे कि उसे क्या करना है।",
+"पहाड़ हमें धैर्य सिखाते हैं। चढ़ने वाला दौड़कर चोटी तक नहीं पहुंचता, वह लगातार चलता है, जरूरत पर आराम करता है और अगले कदम पर नजर रखता है। टाइपिंग भी ऐसी ही है। रोज की छोटी और ध्यान से की गई मेहनत एक दिन की जल्दबाजी से कहीं आगे ले जाती है।",
+"दफ्तर के काम में सही डेटा भरना केवल तेजी से ज्यादा जरूरी है। बिल में एक गलत अंक कई घंटे का अतिरिक्त काम पैदा कर सकता है। आगे बढ़ने से पहले हर पंक्ति जांचिए, दोनों हाथों का उपयोग कीजिए और एक स्थिर लय बनाए रखिए। समय के साथ आपकी गति और शुद्धता दोनों बढ़ेंगी।"
+]};
