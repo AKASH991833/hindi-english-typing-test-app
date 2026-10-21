@@ -1,22 +1,26 @@
+/* Type Fast - focused amber on the shared design system */
+[data-theme=dark]{--bg:#12100c;--bg2:#1a1712;--surface:#1f1b15;--surface2:#2a251c;--border:#373025;--accent:#fbbf24;--accent2:#f59e0b;--on-accent:#221a05;--muted:#a89e8d}
+[data-theme=light]{--accent:#b45309;--accent2:#d97706}
 .seg{display:inline-flex;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:3px;gap:3px}
-.seg button{white-space:nowrap;border:0;background:transparent;padding:8px 16px;border-radius:11px;font-weight:700;color:var(--muted);cursor:pointer;min-height:42px}
-.seg button.on{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 60%,var(--accent2)));color:#fff}
-.hud{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
-.hud div{flex:1 1 90px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:8px;text-align:center}
-.hud b{display:block;font-size:1.5rem;font-variant-numeric:tabular-nums}.hud span{font-size:.7rem;color:var(--muted);text-transform:uppercase}
-.passage{font-size:1.35rem;line-height:2.1;max-height:11.3rem;overflow:hidden;position:relative;padding:8px 4px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);overflow-wrap:anywhere;user-select:none;white-space:pre-wrap}
+.seg button{white-space:nowrap;border:0;background:transparent;padding:9px 17px;border-radius:11px;font-weight:650;color:var(--muted);cursor:pointer;min-height:42px;transition:all .18s}
+.seg button:hover{color:var(--text)}
+.seg button.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--on-accent)}
+.hud{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 14px}
+.hud div{flex:1 1 90px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:10px;text-align:center}
+.hud b{display:block;font-size:1.6rem;font-variant-numeric:tabular-nums;letter-spacing:-.01em}.hud span{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.passage{font-size:1.35rem;line-height:2.1;max-height:11.3rem;overflow:hidden;position:relative;padding:10px 10px;border-radius:14px;background:var(--bg2);border:1px solid var(--border);overflow-wrap:anywhere;user-select:none;white-space:pre-wrap}
 .passage.hi{font-size:1.5rem;line-height:2.3;max-height:13.8rem}
 .passage span.ok{color:var(--ok)}.passage span.bad{color:#fff;background:var(--bad);border-radius:4px}
 .passage span.cur{background:color-mix(in srgb,var(--accent) 35%,transparent);border-radius:4px;box-shadow:0 2px 0 var(--accent)}
 .passage span.pend{color:var(--muted)}
 #inp{font-size:1.25rem;min-height:84px;resize:none}
-.big{font-size:3rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}
-.res div{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:10px;text-align:center}
-.res b{display:block;font-size:1.4rem}.res span{font-size:.72rem;color:var(--muted);text-transform:uppercase}
+.big{font-size:3.2rem;font-weight:900;line-height:1.05;letter-spacing:-.03em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0}
+.res div{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:12px 8px;text-align:center}
+.res b{display:block;font-size:1.45rem;font-variant-numeric:tabular-nums}.res span{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
 .kb{display:grid;gap:6px;overflow-x:auto}.kbr{display:flex;gap:5px}
 .key{min-width:44px;height:52px;border:1px solid var(--border);border-radius:9px;background:var(--bg2);display:grid;place-items:center;font-size:1.05rem;line-height:1.1;text-align:center;position:relative;flex:0 0 auto}
-.key small{position:absolute;top:2px;left:5px;font-size:.6rem;color:var(--muted)}.key i{font-style:normal;color:var(--accent2);font-size:.8rem}
+.key small{position:absolute;top:2px;left:5px;font-size:.6rem;color:var(--muted)}.key i{font-style:normal;color:var(--accent);font-size:.8rem}
 .spark{width:100%;height:80px}
 details>summary{cursor:pointer;font-weight:700;padding:6px 0}
 @media(max-width:460px){.seg button{padding:8px 11px}}

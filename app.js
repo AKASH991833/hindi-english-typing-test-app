@@ -15,7 +15,7 @@ function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Ma
 function buildText(){const pool=shuffle(TEXTS[P.lang]);const need=Math.max(260,P.min*60*6);let t=[];let len=0;let i=0;while(len<need){t.push(pool[i%pool.length]);len+=G(pool[i%pool.length]).length;i++}return t.join(' ')}
 function savePref(){store.set(KEY+'.pref',P)}
 function render(){
- $('#app').innerHTML=`<div class="tabs"><button data-t="test" class="${tab==='test'?'on':''}">Test</button><button data-t="hist" class="${tab==='hist'?'on':''}">Mere scores</button></div><div id="v"></div>`;
+ $('#app').innerHTML=`<div class="tabs"><button data-t="test" class="${tab==='test'?'on':''}">Test</button><button data-t="hist" class="${tab==='hist'?'on':''}">My Scores</button></div><div id="v"></div>`;
  $$('[data-t]').forEach(b=>b.onclick=()=>{tab=b.dataset.t;if(tab==='test')newRun();render();scrollTo(0,0)});
  tab==='test'?vTest($('#v')):vHist($('#v'));
 }
@@ -23,14 +23,14 @@ function newRun(){clearInterval(run&&run.timer);run={text:buildText(),started:0,
 function vTest(el){
  if(!run)newRun();
  const hi=P.lang==='hi';
- el.innerHTML=`<div class="card"><div class="row"><div class="seg" role="group" aria-label="Bhasha"><button data-l="en" class="${!hi?'on':''}">English</button><button data-l="hi" class="${hi?'on':''}">हिन्दी</button></div>
- <div class="seg" role="group" aria-label="Samay">${[1,2,3,5].map(m=>`<button data-m="${m}" class="${P.min===m?'on':''}">${m} min</button>`).join('')}</div></div>
- ${hi?`<label class="row" style="gap:10px;margin-top:10px;flex-wrap:nowrap;align-items:flex-start"><input type="checkbox" id="ins" style="flex:0 0 22px;margin-top:3px" ${P.inscript?'checked':''}><span>Inscript keyboard mode (computer ki English keyboard se Hindi type karein)</span></label>
- <p class="muted" style="margin:4px 0 0;font-size:.85rem">Phone par apna Hindi keyboard (Gboard) use karein, ye mode band rakhein. Computer par Hindi keyboard installed ho to bhi band rakhein.</p>`:''}</div>
- <div class="card"><div class="hud"><div><b id="h-t">${fmtT(run.left)}</b><span>Samay</span></div><div><b id="h-w">0</b><span>WPM</span></div><div><b id="h-a">100%</b><span>Accuracy</span></div></div>
- <div class="passage ${hi?'hi':''}" id="ps" lang="${hi?'hi':'en'}" aria-label="Type karne ka text"></div>
- <textarea id="inp" class="${hi?'hi':''}" lang="${hi?'hi':'en'}" placeholder="Yahan type karna shuru karein. Timer pehle akshar se chalega." spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" aria-label="Typing area"></textarea>
- <div class="row" style="margin-top:10px"><button class="btn" id="rs">Naya text (Esc)</button><span class="muted" style="font-size:.85rem">Backspace se galti sudhar sakte hain.</span></div></div>
+ el.innerHTML=`<div class="card"><div class="row"><div class="seg" role="group" aria-label="Language"><button data-l="en" class="${!hi?'on':''}">English</button><button data-l="hi" class="${hi?'on':''}">हिन्दी</button></div>
+ <div class="seg" role="group" aria-label="Duration">${[1,2,3,5].map(m=>`<button data-m="${m}" class="${P.min===m?'on':''}">${m} min</button>`).join('')}</div></div>
+ ${hi?`<label class="row" style="gap:10px;margin-top:10px;flex-wrap:nowrap;align-items:flex-start"><input type="checkbox" id="ins" style="flex:0 0 22px;margin-top:3px" ${P.inscript?'checked':''}><span>Inscript keyboard mode (type Hindi from a regular English keyboard)</span></label>
+ <p class="muted" style="margin:4px 0 0;font-size:.85rem">On a phone, use your own Hindi keyboard (Gboard) and keep this mode off. Keep it off on a computer too if a Hindi keyboard is already installed.</p>`:''}</div>
+ <div class="card"><div class="hud"><div><b id="h-t">${fmtT(run.left)}</b><span>Time</span></div><div><b id="h-w">0</b><span>WPM</span></div><div><b id="h-a">100%</b><span>Accuracy</span></div></div>
+ <div class="passage ${hi?'hi':''}" id="ps" lang="${hi?'hi':'en'}" aria-label="Text to type"></div>
+ <textarea id="inp" class="${hi?'hi':''}" lang="${hi?'hi':'en'}" placeholder="Start typing here. The timer starts on your first character." spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" aria-label="Typing area"></textarea>
+ <div class="row" style="margin-top:10px"><button class="btn" id="rs">New text (Esc)</button><span class="muted" style="font-size:.85rem">Use Backspace to fix mistakes.</span></div></div>
  ${hi?kbHTML():''}`;
  $$('[data-l]').forEach(b=>b.onclick=()=>{P.lang=b.dataset.l;savePref();newRun();render()});
  $$('[data-m]').forEach(b=>b.onclick=()=>{P.min=+b.dataset.m;savePref();newRun();render()});
@@ -98,26 +98,26 @@ function finish(){
  paintPassage(typed);
  const best=Math.max(0,...hist.filter(h=>h.lang===P.lang&&h!==r).map(h=>h.net));
  const m=document.createElement('div');m.className='modal';m.setAttribute('role','dialog');m.setAttribute('aria-label','Result');
- m.innerHTML=`<div><h2>Aapka result</h2><div class="big">${net} <span style="font-size:1.1rem;-webkit-text-fill-color:var(--muted)">WPM</span></div>${s.counted<5?'<p class="muted">Bahut kam type kiya, score save nahi hua.</p>':net>best&&best>0?'<p style="color:var(--ok);font-weight:700">Naya best score!</p>':''}
- <div class="res"><div><b>${acc}%</b><span>Accuracy</span></div><div><b>${gross}</b><span>Gross WPM</span></div><div><b>${s.ok}</b><span>Sahi akshar</span></div><div><b>${s.counted-s.ok}</b><span>Galat</span></div></div>
- <p class="muted" style="font-size:.85rem">Net WPM = sahi likhe akshar ÷ 5 ÷ minute. 5 akshar = 1 shabd (English aur Hindi dono).</p>
- <div class="row"><button class="btn pri" id="again">Dobara try karo</button><button class="btn" id="cpy">Result copy karo</button><button class="btn" id="cls">Band karo</button></div></div>`;
+ m.innerHTML=`<div><h2>Your result</h2><div class="big">${net} <span style="font-size:1.1rem;-webkit-text-fill-color:var(--muted)">WPM</span></div>${s.counted<5?'<p class="muted">Too little typed - score not saved.</p>':net>best&&best>0?'<p style="color:var(--ok);font-weight:700">New personal best!</p>':''}
+ <div class="res"><div><b>${acc}%</b><span>Accuracy</span></div><div><b>${gross}</b><span>Gross WPM</span></div><div><b>${s.ok}</b><span>Correct chars</span></div><div><b>${s.counted-s.ok}</b><span>Wrong</span></div></div>
+ <p class="muted" style="font-size:.85rem">Net WPM = correct characters ÷ 5 ÷ minutes. 5 characters = 1 word (same for English and Hindi).</p>
+ <div class="row"><button class="btn pri" id="again">Try again</button><button class="btn" id="cpy">Copy result</button><button class="btn" id="cls">Close</button></div></div>`;
  document.body.appendChild(m);
  $('#again').onclick=()=>{m.remove();newRun();render()};
  $('#cls').onclick=()=>m.remove();
- $('#cpy').onclick=()=>copyText(`Maine ${P.lang==='hi'?'Hindi':'English'} typing test me ${net} WPM, ${acc}% accuracy payi (${P.min} min).`);
+ $('#cpy').onclick=()=>copyText(`I scored ${net} WPM with ${acc}% accuracy in the ${P.lang==='hi'?'Hindi':'English'} typing test (${P.min} min).`);
  $('#again').focus();
 }
 function vHist(el){
  const h=hist;
  const best=(l)=>Math.max(0,...h.filter(x=>x.lang===l).map(x=>x.net));
  el.innerHTML=`<div class="card"><div class="res"><div><b>${best('en')}</b><span>Best English WPM</span></div><div><b>${best('hi')}</b><span>Best Hindi WPM</span></div><div><b>${h.length}</b><span>Total tests</span></div></div>${h.length>1?spark(h):''}</div>
- <div class="card">${h.length?`<table><thead><tr><th>Date</th><th>Type</th><th>WPM</th><th>Acc.</th></tr></thead><tbody>${h.map(x=>`<tr><td>${new Date(x.d).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</td><td>${x.lang==='hi'?'हिन्दी':'English'} · ${x.min}m</td><td><b>${x.net}</b></td><td>${x.acc}%</td></tr>`).join('')}</tbody></table><div class="row" style="margin-top:10px"><button class="btn sm bad" id="clr">Saare scores hatao</button></div>`:'<div class="empty">Abhi koi score nahi. Pehla test dein.</div>'}</div>`;
- const c=$('#clr');if(c)c.onclick=()=>{if(confirm('Saare scores delete karein?')){hist=[];store.set(KEY+'.hist',hist);render()}};
+ <div class="card">${h.length?`<table><thead><tr><th>Date</th><th>Type</th><th>WPM</th><th>Acc.</th></tr></thead><tbody>${h.map(x=>`<tr><td>${new Date(x.d).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</td><td>${x.lang==='hi'?'हिन्दी':'English'} · ${x.min}m</td><td><b>${x.net}</b></td><td>${x.acc}%</td></tr>`).join('')}</tbody></table><div class="row" style="margin-top:10px"><button class="btn sm bad" id="clr">Clear all scores</button></div>`:'<div class="empty">No scores yet. Take your first test.</div>'}</div>`;
+ const c=$('#clr');if(c)c.onclick=()=>{if(confirm('Delete all scores?')){hist=[];store.set(KEY+'.hist',hist);render()}};
 }
 function spark(h){const a=[...h].reverse().slice(-20),mx=Math.max(...a.map(x=>x.net),1),W=300,H=70;
  const pts=a.map((x,i)=>[i*(W/(a.length-1)),H-4-(x.net/mx)*(H-12)]);
  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="WPM trend"><polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" points="${pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ')}"/></svg>`}
-function kbHTML(){return `<details class="card"><summary>Inscript key chart (kaun si key se kya)</summary><div class="kb">${ROWS.map((r,i)=>`<div class="kbr" style="margin-left:${i*12}px">${r.map(c=>`<div class="key"><small>${LAT[c]}</small>${INS[c][0]}<i>${INS[c][1]}</i></div>`).join('')}</div>`).join('')}</div><p class="muted" style="font-size:.85rem;margin-bottom:0">Neeche wala akshar normal key se, neele wala Shift ke saath. Matra ke liye pehle consonant, phir matra key. Aadha akshar ke liye consonant ke baad "्" (D key), phir agla consonant.</p></details>`}
+function kbHTML(){return `<details class="card"><summary>Inscript key chart (which key types what)</summary><div class="kb">${ROWS.map((r,i)=>`<div class="kbr" style="margin-left:${i*12}px">${r.map(c=>`<div class="key"><small>${LAT[c]}</small>${INS[c][0]}<i>${INS[c][1]}</i></div>`).join('')}</div>`).join('')}</div><p class="muted" style="font-size:.85rem;margin-bottom:0">The lower character types with a normal keypress, the coloured one with Shift. For a matra, type the consonant first, then the matra key. For a half letter, type the consonant, then "्" (D key), then the next consonant.</p></details>`}
 render();
 window.__t={G,INS};
